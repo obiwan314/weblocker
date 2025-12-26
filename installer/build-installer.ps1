@@ -33,7 +33,6 @@ if (-not $iscc) {
   Write-Error "Inno Setup Compiler (ISCC.exe) not found. Install Inno Setup and ensure ISCC.exe is on PATH or in a standard location: https://jrsoftware.org/"
   exit 2
 }
-Write-Output "Found ISCC at: $iscc"
 
 # Ensure dist\weblocker.exe exists
 $exe = Join-Path $root '..\dist\weblocker.exe'
