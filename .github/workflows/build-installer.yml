@@ -33,7 +33,7 @@ jobs:
       - name: Build installer
         shell: powershell
         run: |
-          npm run build:installer
+          powershell -ExecutionPolicy Bypass -File installer\build-installer.ps1
 
       - name: Find generated installer
         id: find_installer
