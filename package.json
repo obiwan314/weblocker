@@ -1,0 +1,35 @@
+{
+  "name": "weblocker",
+  "version": "1.0.0",
+  "description": "Opens and executes webloc files",
+  "keywords": [
+    "webloc"
+  ],
+  "license": "ISC",
+  "author": "William Reichardt",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "parse": "node index.js",
+    "build:win": "pkg . --targets node18-win-x64 --output dist/weblocker.exe",
+    "build": "npm run build:win"
+  },
+  "bin": {
+    "weblocker": "index.js"
+  },
+  "pkg": {
+    "assets": [
+      "examples/**"
+    ],
+    "targets": [
+      "node18-win-x64"
+    ]
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.3.3"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
+  }
+}
