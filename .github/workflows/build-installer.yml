@@ -62,3 +62,4 @@ jobs:
           asset_path: ${{ steps.find_installer.outputs.installer }}
           asset_name: ${{ steps.find_installer.outputs.name }}
           asset_content_type: application/octet-stream
+          token: ${{ secrets.GITHUB_TOKEN }}
