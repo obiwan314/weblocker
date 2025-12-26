@@ -36,6 +36,10 @@ jobs:
       - name: Build installer
         shell: powershell
         run: |
+          Write-Output "Current dir: $(Get-Location)"
+          Write-Output "Listing top-level files:"
+          Get-ChildItem -Path . -Force | ForEach-Object { Write-Output $_.FullName }
+          if (-not (Test-Path 'installer\build-installer.ps1')) { Write-Error 'installer\\build-installer.ps1 not found in repo; aborting'; exit 1 }
           powershell -ExecutionPolicy Bypass -File installer\build-installer.ps1
 
       - name: Find generated installer
