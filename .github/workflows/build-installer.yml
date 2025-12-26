@@ -55,11 +55,11 @@ jobs:
           Write-Output "installer=$file" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
           Write-Output "name=$name" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
 
-      - name: Upload installer to release
-        uses: actions/upload-release-asset@v1
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ${{ steps.find_installer.outputs.installer }}
-          asset_name: ${{ steps.find_installer.outputs.name }}
-          asset_content_type: application/octet-stream
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload installer to release (gh)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: powershell
+        run: |
+          Write-Output "Authenticating gh CLI"
+          echo $env:GITHUB_TOKEN | gh auth login --with-token
+          gh release upload ${{ github.event.release.tag_name }} "${{ steps.find_installer.outputs.installer }}" --repo ${{ github.repository }} --clobber
